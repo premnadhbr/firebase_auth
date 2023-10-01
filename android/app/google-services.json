@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "65862718917",
+    "project_id": "usermanagement-abcad",
+    "storage_bucket": "usermanagement-abcad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65862718917:android:ebdf7f5d7f1016386ee7ac",
+        "android_client_info": {
+          "package_name": "com.example.user_management_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ1nEGyv9I_ktszyInDSPMjqbEWoBlays"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
