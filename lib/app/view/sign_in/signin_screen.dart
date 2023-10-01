@@ -41,13 +41,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         passEditingController),
                     const SizedBox(height: 20),
                     signInSignUpButton(context, true, () {
-                      FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: emailEditingController.text,
-                          password: passEditingController.text);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()));
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: emailEditingController.text,
+                              password: passEditingController.text)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()));
+                      }).onError((error, stackTrace) {
+                        print("Error ${error.toString()}");
+                      });
                     }),
                     const SizedBox(
                       height: 10,
