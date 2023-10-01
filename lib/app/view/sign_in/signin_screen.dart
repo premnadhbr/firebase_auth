@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:user_management_firebase/app/utils/constants.dart';
 import 'package:user_management_firebase/app/view/home/homescreen.dart';
@@ -29,23 +30,26 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     reusableTextField("Enter UserName", Icons.person, false,
                         emailEditingController),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     reusableTextField("Enter Password", Icons.lock, true,
                         passEditingController),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     signInSignUpButton(context, true, () {
+                      FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailEditingController.text,
+                          password: passEditingController.text);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                              builder: (context) => const HomeScreen()));
                     }),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     signupOption(context),
