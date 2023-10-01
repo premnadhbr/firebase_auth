@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:user_management_firebase/app/utils/constants.dart';
 import 'package:user_management_firebase/app/view/home/homescreen.dart';
@@ -46,10 +48,27 @@ class _SignInScreenState extends State<SignInScreen> {
                               email: emailEditingController.text,
                               password: passEditingController.text)
                           .then((value) {
-                        Navigator.push(
+                        // Successfully signed in
+                        String uid = value.user!.uid;
+                        // Add user data to Firestore
+                        FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(uid)
+                            .set({
+                          'email': emailEditingController.text,
+                          'timestamp': FieldValue
+                              .serverTimestamp(), // Optional: Store sign-in time
+                        }).then((_) {
+                          // Navigate to the home screen
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                                builder: (context) => const HomeScreen()),
+                          );
+                        }).catchError((error) {
+                          print(
+                              "Error adding user data to Firestore: ${error.toString()}");
+                        });
                       }).onError((error, stackTrace) {
                         print("Error ${error.toString()}");
                       });
