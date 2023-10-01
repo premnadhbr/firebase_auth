@@ -51,7 +51,7 @@ Container signInSignUpButton(
     ),
     child: ElevatedButton(
       onPressed: () {
-        ontap;
+        ontap(); // Corrected to ontap();
       },
       child: Text(
         isLogin ? 'LOG IN' : ' SIGN UP',
@@ -62,14 +62,18 @@ Container signInSignUpButton(
         ),
       ),
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Colors.black26;
-            }
-            return Colors.white;
-          }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+        backgroundColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.black26;
+          }
+          return Colors.white;
+        }),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+      ),
     ),
   );
 }

@@ -54,13 +54,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 20),
                   reusableTextField(
                       "Password", Icons.lock, true, passwordController),
-                  signInSignUpButton(context, false, () {
-                    Navigator.push(
+                  signInSignUpButton(
+                    context,
+                    false,
+                    () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  HomeScreen(),
-                        ));
-                  }),
+                          builder: (context) => HomeScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
