@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_management_firebase/app/view/sign_in/signin_screen.dart';
 import 'package:user_management_firebase/app/view/sign_up/signup_screen.dart';
 
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
@@ -25,13 +24,13 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white,
           width: 2.0,
         ),
@@ -45,7 +44,7 @@ Container signInSignUpButton(
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
-    margin: EdgeInsets.all(10),
+    margin: const EdgeInsets.all(10),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(90),
     ),
@@ -55,7 +54,7 @@ Container signInSignUpButton(
       },
       child: Text(
         isLogin ? 'LOG IN' : ' SIGN UP',
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black87,
           fontWeight: FontWeight.bold,
           fontSize: 16,
@@ -78,7 +77,7 @@ Row signupOption(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
+      const Text(
         "Don't have an account? ",
         style: TextStyle(
           color: Colors.white,
@@ -90,10 +89,10 @@ Row signupOption(BuildContext context) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SignUpScreen(),
+                builder: (context) => const SignUpScreen(),
               ));
         },
-        child: Text(
+        child: const Text(
           'Sign in',
           style: TextStyle(
             color: Color.fromARGB(

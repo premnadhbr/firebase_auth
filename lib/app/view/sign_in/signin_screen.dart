@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:user_management_firebase/app/utils/constants.dart';
 import 'package:user_management_firebase/app/view/home/homescreen.dart';
+
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -50,6 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           .then((value) {
                         // Successfully signed in
                         String uid = value.user!.uid;
+                        String email = emailEditingController.text;
                         // Add user data to Firestore
                         FirebaseFirestore.instance
                             .collection('users')
@@ -57,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             .set({
                           'email': emailEditingController.text,
                           'timestamp': FieldValue
-                              .serverTimestamp(), // Optional: Store sign-in time
+                              .serverTimestamp(), 
                         }).then((_) {
                           // Navigate to the home screen
                           Navigator.push(
