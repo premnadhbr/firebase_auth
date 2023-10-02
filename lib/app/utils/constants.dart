@@ -25,13 +25,13 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           color: Colors.white,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           color: Colors.white,
           width: 2.0,
         ),
@@ -45,7 +45,7 @@ Container signInSignUpButton(
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
-    margin: const EdgeInsets.all(10),
+    margin: EdgeInsets.all(10),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(90),
     ),
@@ -55,25 +55,21 @@ Container signInSignUpButton(
       },
       child: Text(
         isLogin ? 'LOG IN' : ' SIGN UP',
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.black87,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
       ),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.black26;
-          }
-          return Colors.white;
-        }),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-      ),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.black26;
+            }
+            return Colors.white;
+          }),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
     ),
   );
 }
@@ -82,7 +78,7 @@ Row signupOption(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      const Text(
+      Text(
         "Don't have an account? ",
         style: TextStyle(
           color: Colors.white,
@@ -94,10 +90,10 @@ Row signupOption(BuildContext context) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SignUpScreen(),
+                builder: (context) => SignUpScreen(),
               ));
         },
-        child: const Text(
+        child: Text(
           'Sign in',
           style: TextStyle(
             color: Color.fromARGB(
