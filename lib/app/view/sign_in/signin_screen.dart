@@ -56,8 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             .doc(uid)
                             .set({
                           'email': emailEditingController.text,
-                          'timestamp': FieldValue
-                              .serverTimestamp(), 
+                          'timestamp': FieldValue.serverTimestamp(),
                         }).then((_) {
                           // Navigate to the home screen
                           Navigator.push(
