@@ -93,7 +93,7 @@ Row signupOption(BuildContext context) {
               ));
         },
         child: const Text(
-          'Sign in',
+          'Sign Up',
           style: TextStyle(
             color: Color.fromARGB(
                 255, 1, 37, 55), // You can use any color you like

@@ -37,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    reusableTextField("Enter UserName", Icons.person, false,
+                    reusableTextField("Enter Email", Icons.person, false,
                         emailEditingController),
                     const SizedBox(height: 20),
                     reusableTextField("Enter Password", Icons.lock, true,
