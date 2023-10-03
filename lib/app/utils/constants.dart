@@ -6,8 +6,6 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   return TextField(
     controller: controller,
     obscureText: isPasswordType,
-    enableSuggestions: !isPasswordType,
-    autocorrect: !isPasswordType,
     cursorColor: Colors.white,
     style: const TextStyle(
       color: Colors.white,

@@ -19,8 +19,9 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () => FirebaseAuth.instance.signOut(),
-              icon: Icon(Icons.exit_to_app))
+            onPressed: () => FirebaseAuth.instance.signOut(),
+            icon: const Icon(Icons.exit_to_app),
+          )
         ],
       ),
       body: Container(
