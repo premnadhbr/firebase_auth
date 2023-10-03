@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:user_management_firebase/app/controller/auth_controller.dart';
 import 'package:user_management_firebase/app/utils/constants.dart';
 import 'package:user_management_firebase/app/view/home/homescreen.dart';
 
@@ -42,35 +44,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         passEditingController),
                     const SizedBox(height: 20),
                     signInSignUpButton(context, true, () {
-                      FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                              email: emailEditingController.text,
-                              password: passEditingController.text)
-                          .then((value) {
-                        // Successfully signed in
-                        String uid = value.user!.uid;
-                        String email = emailEditingController.text;
-                        // Add user data to Firestore
-                        FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(uid)
-                            .set({
-                          'email': emailEditingController.text,
-                          'timestamp': FieldValue.serverTimestamp(),
-                        }).then((_) {
-                          // Navigate to the home screen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
-                          );
-                        }).catchError((error) {
-                          print(
-                              "Error adding user data to Firestore: ${error.toString()}");
-                        });
-                      }).onError((error, stackTrace) {
-                        print("Error ${error.toString()}");
-                      });
+                      Provider.of<AuthServices>(context, listen: false).signup(
+                          emailEditingController.text,
+                          passEditingController.text,
+                          context);
                     }),
                     const SizedBox(
                       height: 10,

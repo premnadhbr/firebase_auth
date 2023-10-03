@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:user_management_firebase/app/controller/auth_controller.dart';
 import 'package:user_management_firebase/app/utils/constants.dart';
 import '../home/homescreen.dart';
 
@@ -58,21 +60,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     context,
                     false,
                     () {
-                      FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text)
-                          .then((value) {
-                        print("Created New Account");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ),
-                        );
-                      }).onError((error, stackTrace) {
-                        print('Error ${error.toString()}');
-                      });
+                      Provider.of<AuthServices>(context, listen: false).signup(
+                          emailController.text,
+                          passwordController.text,
+                          context);
                     },
                   ),
                 ],
