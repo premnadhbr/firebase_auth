@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     context,
                     false,
                     () {
-                      Provider.of<AuthServices>(context, listen: false).signup(
+                      Provider.of<AuthServices>(context, listen: false).create(
                           emailController.text,
                           passwordController.text,
                           context);

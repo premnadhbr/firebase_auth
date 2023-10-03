@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../view/home/homescreen.dart';
 
 class AuthServices extends ChangeNotifier {
-
-  signin(String email, String password, BuildContext context) {
+  create(String email, String password, BuildContext context) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      print("Created New Account");
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Created New Account')));
 
       Navigator.push(
         context,
@@ -21,7 +22,6 @@ class AuthServices extends ChangeNotifier {
       print('Error ${error.toString()}');
     });
     notifyListeners();
-
   }
 
   signup(String email, String password, BuildContext context) {
@@ -48,7 +48,5 @@ class AuthServices extends ChangeNotifier {
       print("Error ${error.toString()}");
     });
     notifyListeners();
-    
   }
-
 }
