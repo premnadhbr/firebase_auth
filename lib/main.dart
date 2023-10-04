@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_management_firebase/app/provider/auth_provider.dart';
+import 'package:user_management_firebase/app/utils/utils.dart';
 import 'package:user_management_firebase/app/view/sign_in/signin_screen.dart';
 import 'package:user_management_firebase/firebase_options.dart';
 
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        scaffoldMessengerKey: Utils.messKey,
         debugShowCheckedModeBanner: false,
-        home: SignInScreen(),
+        home: const SignInScreen(),
       ),
     );
   }
