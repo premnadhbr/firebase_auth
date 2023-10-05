@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_management_firebase/app/utils/utils.dart';
 import '../view/home/homescreen.dart';
+import '../view/sign_in/signin_screen.dart';
 
 class AuthServices extends ChangeNotifier {
   create(
@@ -52,6 +54,8 @@ class AuthServices extends ChangeNotifier {
         password: password,
       );
 
+      saveUserEmail(email);
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -67,6 +71,38 @@ class AuthServices extends ChangeNotifier {
         Utils.showSnackBar("${e.code}");
       }
     }
+    notifyListeners();
+  }
+
+  //for retriving the data
+  Future<String?> getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    return sharedPreferences.getString('Email');
+  }
+
+  //save user email in Shared Preferences
+  void saveUserEmail(String email) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.setString('Email', email);
+    notifyListeners();
+  }
+
+  signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    // Clear data from SharedPreferences
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.remove('Email');
+
+    // Navigate to the sign-in screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignInScreen(),
+      ),
+    );
     notifyListeners();
   }
 }

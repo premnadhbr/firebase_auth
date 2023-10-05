@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:user_management_firebase/app/view/sign_in/signin_screen.dart';
+
+import '../../provider/auth_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -19,9 +23,12 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () => FirebaseAuth.instance.signOut(),
+            onPressed: () async {
+              await Provider.of<AuthServices>(context, listen: false)
+                  .signOut(context);
+            },
             icon: const Icon(Icons.exit_to_app),
-          )
+          ),
         ],
       ),
       body: Container(

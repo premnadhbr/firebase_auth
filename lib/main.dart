@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:user_management_firebase/app/provider/auth_provider.dart';
 import 'package:user_management_firebase/app/utils/utils.dart';
 import 'package:user_management_firebase/app/view/sign_in/signin_screen.dart';
+import 'package:user_management_firebase/app/view/splashScreen/splashscreen.dart';
 import 'package:user_management_firebase/firebase_options.dart';
 
 void main() async {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         scaffoldMessengerKey: Utils.messKey,
         debugShowCheckedModeBanner: false,
-        home: const SignInScreen(),
+        home: Splashscreen(),
       ),
     );
   }
