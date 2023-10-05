@@ -22,6 +22,8 @@ class AuthServices extends ChangeNotifier {
           'name': name,
         });
 
+        saveUserEmail(email);
+
         Navigator.push(
           context,
           MaterialPageRoute(
