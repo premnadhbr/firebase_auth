@@ -19,7 +19,7 @@ class _SplashscreenState extends State<Splashscreen> {
 
     Future.delayed(const Duration(seconds: 2), () async {
       final authProvider = Provider.of<AuthServices>(context, listen: false);
-      try {
+      try { 
         final email = await authProvider.getValidationData();
 
         if (email == null) {
